@@ -1,5 +1,3 @@
-# smile-detection-Python
----
 Smile detection based on OpenCV implemented in Python
 
 <br/>
