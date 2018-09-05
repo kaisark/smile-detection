@@ -1,7 +1,8 @@
 # -*- coding=utf-8 -*-
+# attribution - https://github.com/LiuXiaolong19920720/smile-detection-Python
 import cv2
 
-# 人脸检测器
+# 人脸检测器 #face detect
 facePath = "lbpcascade_frontalface.xml"
 faceCascade = cv2.CascadeClassifier(facePath)
 
@@ -17,7 +18,6 @@ print("vid frame_width {}".format(int(frame_width)))
 print("vid frame_height {}".format(int(frame_height)))
 
 vid_length = int(camera.get(cv2.CAP_PROP_FRAME_COUNT)) #CAP_PROP_FPS 
-#vid_length = int(input_movie.get(cv2.CAP_PROP_FPS)) #CAP_PROP_FPS
 vid_width = int(camera.get(cv2.CAP_PROP_FRAME_WIDTH)) #640
 vid_height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT)) #480
 #height = 720
@@ -28,7 +28,6 @@ print("vid height {}".format(int(vid_height)))
 
 # Create an output movie file (make sure resolution/frame rate matches input video!)
 fourcc = cv2.VideoWriter_fourcc(*'XVID')
-#output_movie = cv2.VideoWriter('output.avi', fourcc, 29.97, (640, 360))
 output_movie = cv2.VideoWriter('output-smile.avi', fourcc, 25, (vid_width, vid_height))
 
 while True:
@@ -71,8 +70,7 @@ while True:
 
 	cv2.imshow('Smile?', img)
 	output_movie.write(img)
-	#cv2.imwrite("smile.jpg",img)
-	#c = cv2.waitKey(0)
+
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 	    break
 

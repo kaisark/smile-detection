@@ -1,7 +1,8 @@
 # -*- coding=utf-8 -*-
+# attribution - https://github.com/LiuXiaolong19920720/smile-detection-Python
 import cv2
 
-# 人脸检测器
+# 人脸检测器 #face detect
 facePath = "lbpcascade_frontalface.xml"
 faceCascade = cv2.CascadeClassifier(facePath)
 
@@ -10,9 +11,6 @@ smilePath = "haarcascade_smile.xml"
 smileCascade = cv2.CascadeClassifier(smilePath)
 
 camera = cv2.VideoCapture(0)
-
-img = cv2.imread("test.jpg")  
-gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 while True:
 	(ret, img) = camera.read()
@@ -53,8 +51,7 @@ while True:
 			cv2.putText(img,'Smile',(x,y-7), 3, 1.2, (0, 255, 0), 2, cv2.LINE_AA)
 
 	cv2.imshow('Smile?', img)
-	#cv2.imwrite("smile.jpg",img)
-	#c = cv2.waitKey(0)
+
 	if cv2.waitKey(1) & 0xFF == ord('q'):
 	    break
 
