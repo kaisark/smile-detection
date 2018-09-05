@@ -17,12 +17,11 @@ frame_height = int(camera.get(4))
 print("vid frame_width {}".format(int(frame_width)))
 print("vid frame_height {}".format(int(frame_height)))
 
-vid_length = int(camera.get(cv2.CAP_PROP_FRAME_COUNT)) #CAP_PROP_FPS 
 vid_width = int(camera.get(cv2.CAP_PROP_FRAME_WIDTH)) #640
 vid_height = int(camera.get(cv2.CAP_PROP_FRAME_HEIGHT)) #480
 #height = 720
 #width = 1080
-print("vid length {}".format(vid_length))
+
 print("vid width {}".format(int(vid_width)))
 print("vid height {}".format(int(vid_height)))
 
