@@ -2,11 +2,11 @@
 # attribution - https://github.com/LiuXiaolong19920720/smile-detection-Python
 import cv2
 
-# 人脸检测器 #face detect
+# 人脸检测器 #face detector
 facePath = "lbpcascade_frontalface.xml"
 faceCascade = cv2.CascadeClassifier(facePath)
 
-# 笑脸检测器
+# 笑脸检测器 #smile detector
 smilePath = "haarcascade_smile.xml"
 smileCascade = cv2.CascadeClassifier(smilePath)
 
@@ -38,7 +38,7 @@ while True:
 	if not ret:
 		break
 
-	# 首先检测人脸，返回的是框住人脸的矩形框
+	# 首先检测人脸，返回的是框住人脸的矩形框 #First detect the face - Returning the rectangular frame that frames the face
 	faces = faceCascade.detectMultiScale(
     	gray,
     	scaleFactor= 1.1,
@@ -47,13 +47,13 @@ while True:
     	flags=cv2.CASCADE_SCALE_IMAGE
 	)
 
-	# 画出每一个人脸，提取出人脸所在区域
+	# 画出每一个人脸，提取出人脸所在区域 #Draw every face - Extract the area where the face is located
 	for (x, y, w, h) in faces:
 		cv2.rectangle(img, (x, y), (x+w, y+h), (0, 0, 255), 2)
 		roi_gray = gray[y:y+h, x:x+w]
 		roi_color = img[y:y+h, x:x+w]
 
-		# 对人脸进行笑脸检测
+		# 对人脸进行笑脸检测 #Smile detection on the face
 		smile = smileCascade.detectMultiScale(
         	roi_gray,
         	scaleFactor= 1.16,
@@ -62,7 +62,7 @@ while True:
         	flags=cv2.CASCADE_SCALE_IMAGE
     	)
 
-		# 框出上扬的嘴角并对笑脸打上Smile标签
+		# 框出上扬的嘴角并对笑脸打上Smile标签 #Frame the rising corner of the mouth and put on the smile
 		for (x2, y2, w2, h2) in smile:
 			cv2.rectangle(roi_color, (x2, y2), (x2+w2, y2+h2), (255, 0, 0), 2)
 			cv2.putText(img,'Smile',(x,y-7), 3, 1.2, (0, 255, 0), 2, cv2.LINE_AA)
